@@ -10,3 +10,18 @@ a blockchain and other users vote on that. It's based on the corresponding libra
 
 Because of Blockstack's properties the app works completely decentralized without having to trust anyone. Beacon uses
 decentral naming, identity and storage as provided by [blockstack.js](https://github.com/blockstack/blockstack.js).
+
+## Contributing
+
+Great to hear!
+
+If you'd like to contribute code, please raise it against the [`develop`](https://github.com/ntzwrk/beacon/tree/develop)
+branch (and if you're familiar with [git-flow](http://nvie.com/posts/a-successful-git-branching-model/) you're welcomed
+to use it).
+
+If you're not a dev but like to contribute anyway, you can help with testing the software, finding and
+reporting bugs, and of course spreading the word.
+
+## License
+
+This code is published under the [GNU General Public License v3.0](LICENSE.md).
