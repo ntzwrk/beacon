@@ -1,7 +1,7 @@
 # Beacon
 
-_This software is currently under heavy development. If you like to stay updated and follow the development, you can track
-https://blog.ntzwrk.org/tags/beacon/._
+_This software is currently under heavy development. If you like to stay updated and follow the development, you can
+track https://blog.ntzwrk.org/tags/beacon/._
 
 ---
 Beacon is a transparent and secure voting software powered by Blockstack's software stack. It lets you issue votes into
@@ -19,8 +19,8 @@ If you'd like to contribute code, please raise it against the [`develop`](https:
 branch (and if you're familiar with [git-flow](http://nvie.com/posts/a-successful-git-branching-model/) you're welcome
 to use it).
 
-If you're not a developer but like to contribute anyway, you can help with testing the software, finding and
-reporting bugs, and of course spreading the word.
+If you're not a developer but like to contribute anyway, you can help by testing the software, finding and reporting
+bugs, and of course spreading the word.
 
 ## License
 
