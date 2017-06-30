@@ -78,16 +78,44 @@ make
 ## Elements on each model
 
 ### Create a poll
-* `@todo`
+* Title
+* Description
+* Image ("Avatar")
+* Start date
+* End date
+* Choosable decisions (selectable)
+* Button to submit
+* Properties needed to qualify
+	* List of Blockstack IDs
+	* Features of a Blockstack ID
+		* Verified GitHub
+		* Age of Blockstack ID
+		* (and similar)
+	* Burn some bitcoin
 
 ### View a poll
-* `@todo`
+* Same as above
 
 #### Submite a vote
-* `@todo`
+* Popup with
+	* Title
+	* Description
+	* Chosen decision(s)
+	* Hint what the next step will do
+		* Redirects to wallet
+		* Creates a public transaction containing the vote
+		* Spends bitcoin from user wallet
+	* Button to confirm
 
 #### View the evaluation
-* `@todo`
+* List of votes
+	* Each vote with user, date and decision
+* Results
+	* One (or optionally more) decisions that got chosen
+	* Count of all voters
+	* Pie chart with distribution
+	* (Line chart with vote development)
 
 #### Inspect a vote
-* `@todo`
+* Popup with additional (technical) details about a specific vote
+* Link for viewing it in the explorer
