@@ -1,0 +1,39 @@
+{
+  "name": "beacon",
+  "version": "0.1.0",
+  "description": "An end user tool for voting in a decentralized and transparent manner",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "copy-assets": "cpx \"app/{img,css}/**/*\" \"public/\" --clean",
+    "build-app": "browserify app/ts/app.ts -o public/app.js",
+    "build-bundle": "mkdir -p public/js && browserify app/ts/requires.ts -o public/js/bundle.js",
+    "build": "npm run copy-assets; npm run build-app; npm run build-bundle",
+    "start": "npm run build; node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -r public/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ntzwrk/beacon.git"
+  },
+  "author": "vsund",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ntzwrk/beacon/issues"
+  },
+  "homepage": "https://github.com/ntzwrk/beacon#readme",
+  "devDependencies": {
+    "browserify": "^14.4.0",
+    "express": "^4.15.3",
+    "opn": "^5.1.0",
+    "tsify": "^3.0.1",
+    "typedoc": "^0.7.1",
+    "typescript": "^2.4.1"
+  },
+  "dependencies": {
+    "blockstack": "^0.7.0"
+  }
+}
