@@ -1,0 +1,10 @@
+{
+  "name": "Beacon",
+  "start_url": "localhost:5000",
+  "description": "An end user tool for voting in a decentralized and transparent manner",
+  "icons": [{
+    "src": "http://localhost:5000/img/logo-192x192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }]
+}
