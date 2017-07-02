@@ -13,6 +13,7 @@
     "build": "npm run copy-assets; npm run build-app; npm run build-bundle",
     "start": "npm run build; node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "document": "typedoc --alwaysStrict --noImplicitAny --out docs/code/ app/ts/",
     "clean": "rm -r public/"
   },
   "repository": {
