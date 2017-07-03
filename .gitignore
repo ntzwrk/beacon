@@ -39,3 +39,4 @@ jspm_packages
 # Custom
 .DS_Store
 public
+app/ts/**/*.js
