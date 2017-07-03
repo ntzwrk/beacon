@@ -1,1 +1,1 @@
-(<any> window).blockstack = require('blockstack')
+window.blockstack = require('blockstack')
