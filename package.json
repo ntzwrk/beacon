@@ -8,12 +8,12 @@
   },
   "scripts": {
     "copy-assets": "mkdir -p public && cpx \"app/**/*.html\" \"public/\" && cpx \"app/{img,css}/**/*\" \"public/\" --clean",
-    "build-app": "mkdir -p public/js && browserify app/ts/app.ts -p tsify --alwaysStrict -o public/js/app.js",
-    "build-bundle": "mkdir -p public/js && browserify app/ts/requires.ts -p tsify --alwaysStrict -o public/js/bundle.js",
+    "build-app": "mkdir -p public/js && browserify app/ts/app.ts -o public/js/app.js",
+    "build-bundle": "mkdir -p public/js && browserify app/ts/requires.ts -o public/js/bundle.js",
     "build": "yarn run copy-assets; yarn run build-app; yarn run build-bundle",
     "start": "yarn run build; node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "document": "typedoc --alwaysStrict --noImplicitAny --out docs/code/ app/ts/",
+    "document": "typedoc --out docs/code/ app/ts/",
     "clean": "rm -r public/"
   },
   "repository": {
