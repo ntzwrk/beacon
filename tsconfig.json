@@ -1,12 +1,17 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
+	"compilerOptions": {
+		"target": "es5",
+		"module": "commonjs",
+		"jsx": "react",
 
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true
-  }
+		"strict": true,
+		"noImplicitAny": true,
+		"strictNullChecks": false,
+		"noImplicitThis": true,
+		"alwaysStrict": true
+	},
+
+	"include": [
+		"app/ts/**/*"
+	]
 }
