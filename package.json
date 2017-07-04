@@ -8,6 +8,7 @@
   "scripts": {
     "build": "webpack",
     "start": "yarn run build; node server.js",
+	"dev": "webpack-dev-server --content-base ./public --hot --inline --port 5000 --open",
     "test": "echo \"Error: no test specified\" && exit 1",
     "document": "typedoc --out docs/code/ app/ts/",
     "clean": "rm -r public/"
@@ -31,7 +32,8 @@
     "ts-loader": "^2.2.2",
     "typedoc": "^0.7.1",
     "typescript": "^2.4.1",
-    "webpack": "^3.0.0"
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.5.0"
   },
   "dependencies": {
     "blockstack": "^0.7.0",
