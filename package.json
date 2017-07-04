@@ -2,7 +2,6 @@
   "name": "beacon",
   "version": "0.1.0",
   "description": "An end user tool for voting in a decentralized and transparent manner",
-  "main": "index.js",
   "directories": {
     "doc": "docs"
   },
