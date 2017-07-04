@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/ntzwrk/beacon#readme",
   "devDependencies": {
+    "@types/react": "^15.0.34",
+    "@types/react-dom": "^15.5.1",
     "copy-webpack-plugin": "^4.0.1",
     "express": "^4.15.3",
     "opn": "^5.1.0",
@@ -32,6 +34,8 @@
     "webpack": "^3.0.0"
   },
   "dependencies": {
-    "blockstack": "^0.7.0"
+    "blockstack": "^0.7.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
   }
 }
