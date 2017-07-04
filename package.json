@@ -2,17 +2,15 @@
   "name": "beacon",
   "version": "0.1.0",
   "description": "An end user tool for voting in a decentralized and transparent manner",
-  "main": "index.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "copy-assets": "cpx \"app/{img,css}/**/*\" \"public/\" --clean",
-    "build-app": "browserify app/ts/app.ts -o public/app.js",
-    "build-bundle": "mkdir -p public/js && browserify app/ts/requires.ts -o public/js/bundle.js",
-    "build": "npm run copy-assets; npm run build-app; npm run build-bundle",
-    "start": "npm run build; node server.js",
+    "build": "webpack",
+    "start": "yarn run build; node server.js",
+	"dev": "webpack-dev-server --content-base ./public --hot --inline --port 5000 --open",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "document": "typedoc --out docs/code/ app/ts/",
     "clean": "rm -r public/"
   },
   "repository": {
@@ -26,14 +24,20 @@
   },
   "homepage": "https://github.com/ntzwrk/beacon#readme",
   "devDependencies": {
-    "browserify": "^14.4.0",
+    "@types/react": "^15.0.34",
+    "@types/react-dom": "^15.5.1",
+    "copy-webpack-plugin": "^4.0.1",
     "express": "^4.15.3",
     "opn": "^5.1.0",
-    "tsify": "^3.0.1",
+    "ts-loader": "^2.2.2",
     "typedoc": "^0.7.1",
-    "typescript": "^2.4.1"
+    "typescript": "^2.4.1",
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.5.0"
   },
   "dependencies": {
-    "blockstack": "^0.7.0"
+    "blockstack": "^0.7.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
   }
 }
