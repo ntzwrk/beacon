@@ -13,10 +13,10 @@ export class Poll {
 	/** URL to an icon for the poll */
 	public imageUrl: string;
 
-	/** Start date of the poll (the earliest date a user is able to vote) */
+	/** Start date of the poll (the earliest date a vote counts as valid) */
 	public startDate: number;
 
-	/** End date of the poll (the latest date a user is able to vote) */
+	/** End date of the poll (the latest date a vote counts as valid) */
 	public endDate: number;
 
 	/** Boolean that determines whether multiple answers are possible */
