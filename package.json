@@ -8,7 +8,7 @@
   "scripts": {
     "build": "webpack",
     "start": "yarn run build; node server.js",
-	"dev": "webpack-dev-server --content-base ./public --hot --inline --port 5000 --open",
+    "dev": "webpack-dev-server --content-base ./public --hot --inline --port 5000 --open",
     "test": "echo \"Error: no test specified\" && exit 1",
     "document": "typedoc --out docs/code/ app/ts/",
     "clean": "rm -r public/"
