@@ -10,7 +10,7 @@ export class Vote extends Publishable {
 	public decision: string;
 
 	/** Version number of vote data structure */
-	protected version: string = "0.1.0";
+	protected version: number = 1;
 
 
 	/** Constructor for creating a new vote object */
