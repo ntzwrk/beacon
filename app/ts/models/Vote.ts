@@ -1,7 +1,8 @@
-import {Poll} from './Poll'
+import {Poll} from './Poll';
+import {Publishable} from './Publishable';
 
 /** Class representing a vote */
-export class Vote {
+export class Vote extends Publishable {
 	/** Poll that this vote is for */
 	public poll: Poll;
 
@@ -14,6 +15,7 @@ export class Vote {
 
 	/** Constructor for creating a new vote object */
 	constructor(poll: Poll, decision: string) {
+		super();
 		this.poll = poll;
 		this.decision = decision;
 	}

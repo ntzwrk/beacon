@@ -1,9 +1,10 @@
 import {Attribute} from './Attribute';
 import {Evaluation} from './Evaluation';
+import {Publishable} from './Publishable';
 import {Vote} from './Vote';
 
 /** Class representing a poll */
-export class Poll {
+export class Poll extends Publishable {
 	/** Title of the poll */
 	public title: string;
 
@@ -49,6 +50,7 @@ export class Poll {
 		requireAllAttributes: boolean,
 		requiredAttributes: Attribute[]
 	) {
+		super();
 		this.title = title;
 		this.description = description;
 		this.imageUrl = imageUrl;
