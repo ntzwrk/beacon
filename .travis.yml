@@ -1,0 +1,12 @@
+language: node_js
+
+node_js:
+	- "node"
+	- "7"
+
+cache:
+	yarn: true
+
+notifications:
+	email:
+		on_success: never
