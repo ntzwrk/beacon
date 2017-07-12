@@ -18,4 +18,27 @@ export class Vote extends Publishable {
 		this.pollId = pollId;
 		this.decision = decision;
 	}
+
+	public toJson(): string {
+		return JSON.stringify(this);
+	}
+
+	public loadFromJson(jsonString: string): void {
+		// More information on the second (the reviver) parameter:
+		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse#Using_the_reviver_parameter
+
+		JSON.parse(jsonString, (key, value) => {
+				switch(key) {
+				case "pollId":
+					this.pollId = value;
+					break;
+				case "decision":
+					this.decision = value;
+					break;
+				case "version":
+					this.version = value;
+					break;
+			}
+		});
+	}
 }
