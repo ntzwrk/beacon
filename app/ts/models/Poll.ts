@@ -10,7 +10,7 @@ import {exampleVotes} from '../../../test/exampleData/Votes';
 /** Class representing a poll */
 export class Poll extends Publishable {
 	/** An unique id for the poll */
-	protected pollId: string;
+	public pollId: string;
 
 	/** Title of the poll */
 	public title: string;
