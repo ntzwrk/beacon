@@ -6,4 +6,7 @@ export interface Attribute {
 	 * @returns Boolean that determines whether this attribute is given or not.
 	 * */
 	check(): boolean;
+
+	/** Overrides the default method. Should return an unique id for identifying the attribute */
+	toJSON(): string;
 }
