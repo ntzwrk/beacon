@@ -69,6 +69,63 @@ export class Poll extends Publishable {
 		this.requiredAttributes = requiredAttributes;
 	}
 
+	public toJson(): string {
+		// More information on the second (the replacer) parameter:
+		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#The_replacer_parameter
+
+		return JSON.stringify(this, (key, value) => {
+			if(key === "votes") {
+				return undefined;
+			} else {
+				return value;
+			}
+		});
+	}
+
+	public loadFromJson(jsonString: string): void {
+		// More information on the second (the reviver) parameter:
+		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse#Using_the_reviver_parameter
+
+		JSON.parse(jsonString, (key, value) => {
+			switch(key) {
+				case "title":
+					this.title = value;
+					break;
+				case "description":
+					this.description = value;
+					break;
+				case "imageUrl":
+					this.imageUrl = value;
+					break;
+				case "startDate":
+					this.startDate = value;
+					break;
+				case "endDate":
+					this.endDate = value;
+					break;
+				case "multipleDecisionsPossible":
+					this.multipleDecisionsPossible = value;
+					break;
+				case "decisions":
+					// @fixme decisions is [undefined, ...] at this point
+					this.decisions = value;
+					break;
+				case "requireAllAttributes":
+					this.requireAllAttributes = value;
+					break;
+				case "requiredAttributes":
+					// @fixme requiredAttributes is [{}, {}] at this point
+					this.requiredAttributes = value;
+					break;
+				case "version":
+					this.version = value;
+					break;
+			}
+		});
+
+		this.loadVotesFromAtlas();
+	}
+
 	/** Sets an array of votes */
 	public setVotes(votes: Vote[]): void {
 		this.votes = votes;
