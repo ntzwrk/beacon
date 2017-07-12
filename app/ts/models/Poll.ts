@@ -5,6 +5,9 @@ import {Vote} from './Vote';
 
 /** Class representing a poll */
 export class Poll extends Publishable {
+	/** An unique id for the poll */
+	protected pollId: string;
+
 	/** Title of the poll */
 	public title: string;
 
