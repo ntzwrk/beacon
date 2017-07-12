@@ -79,8 +79,7 @@ export class Poll extends Publishable {
 	}
 
 	/** Returns true if the poll is currently running, otherwise false */
-	public isRunning(): boolean {
-		// @todo
-		return false;
+	public isRunning(date: number = Date.now()): boolean {
+		return (this.startDate <= date) && (date <= this.endDate);
 	}
 }
