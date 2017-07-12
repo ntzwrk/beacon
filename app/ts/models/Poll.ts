@@ -3,6 +3,10 @@ import {Evaluation} from './Evaluation';
 import {Publishable} from './Publishable';
 import {Vote} from './Vote';
 
+// @todo
+import {examplePoll} from '../../../test/exampleData/Poll';
+import {exampleVotes} from '../../../test/exampleData/Votes';
+
 /** Class representing a poll */
 export class Poll extends Publishable {
 	/** An unique id for the poll */
@@ -73,6 +77,17 @@ export class Poll extends Publishable {
 	/** Returns an array of votes a poll got */
 	public getVotes(): Vote[] {
 		return this.votes;
+	}
+
+	public static createFromPollId(pollId: string): Poll {
+		// @todo
+		return examplePoll;
+	}
+
+	/** Loads all respective votes that are visible on Atlas */
+	public loadVotesFromAtlas(): void {
+		// @todo
+		this.votes = exampleVotes;
 	}
 
 	/** Evaluates a poll and returns an object with evaluation data in it */
