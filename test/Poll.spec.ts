@@ -15,7 +15,7 @@ describe("Poll", () => {
 	});
 
 	it("decides correctly whether the poll is running or not", () => {
-		// examplePoll started 2017-07-12 00:00 and ended 24h later
+		// examplePoll started 2017-07-12 00:00 UTC and ended 24h later
 
 		chai.assert.isFalse(examplePoll.isRunning());
 		chai.assert.isFalse(examplePoll.isRunning(examplePoll.startDate - 1));
