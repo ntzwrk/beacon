@@ -3,7 +3,11 @@ import {
 	dummyVote,
 	exampleVotes,
 	voteA as exampleVoteA,
-	serializedVoteA as serializedExampleVoteA
+	serializedVoteA as serializedExampleVoteA,
+	serializedVoteTest_wrongVersion,
+	serializedVoteTest_noVersion,
+	serializedVoteTest_wrongPollId,
+	serializedVoteTest_wrongDecisionType
 } from "./exampleData/Votes";
 import {Poll} from "../app/ts/models/Poll";
 
@@ -23,5 +27,11 @@ describe("Vote", () => {
 	it("deserializes correctly", () => {
 		dummyVote.loadFromJson(serializedExampleVoteA);
 		chai.assert.deepEqual(exampleVoteA, dummyVote);
+
+		chai.assert.throws(() => dummyVote.loadFromJson(serializedVoteTest_wrongVersion), Error, "No or invalid 'version' attribute found in serialized vote");
+		chai.assert.throws(() => dummyVote.loadFromJson(serializedVoteTest_noVersion), Error, "No or invalid 'version' attribute found in serialized vote");
+		chai.assert.throws(() => dummyVote.loadFromJson(serializedVoteTest_wrongPollId), Error, "No or invalid 'pollId' attribute found in serialized vote");
+		chai.assert.throws(() => dummyVote.loadFromJson(serializedVoteTest_wrongDecisionType), Error, "No or invalid 'decision' attribute found in serialized vote");
+		chai.assert.throws(() => dummyVote.loadFromJson("this is no valid json"), Error, "No valid JSON data found");
 	});
 });

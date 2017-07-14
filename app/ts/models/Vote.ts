@@ -24,21 +24,33 @@ export class Vote extends Publishable {
 	}
 
 	public loadFromJson(jsonString: string): void {
-		// More information on the second (the reviver) parameter:
-		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse#Using_the_reviver_parameter
+		// @todo refactor
 
-		JSON.parse(jsonString, (key, value) => {
-				switch(key) {
-				case "pollId":
-					this.pollId = value;
-					break;
-				case "decision":
-					this.decision = value;
-					break;
-				case "version":
-					this.version = value;
-					break;
-			}
-		});
+		try {
+			var loadedVote: Vote = JSON.parse(jsonString);
+		} catch(e) {
+			throw new Error("No valid JSON data found");
+		}
+
+		switch(loadedVote.version) {
+			case 1:
+				if(typeof loadedVote.pollId === "string" && loadedVote.pollId != "") {
+					this.pollId = loadedVote.pollId;
+				} else {
+					throw new Error("No or invalid 'pollId' attribute found in serialized vote");
+				}
+
+				if(typeof loadedVote.decision === "string") {
+					this.decision = loadedVote.decision;
+				} else {
+					throw new Error("No or invalid 'decision' attribute found in serialized vote");
+				}
+
+				this.version = loadedVote.version;
+				break;
+
+			default:
+				throw new Error("No or invalid 'version' attribute found in serialized vote");
+		}
 	}
 }

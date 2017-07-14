@@ -1,7 +1,11 @@
 import {
 	dummyPoll,
 	examplePoll,
-	serializedExamplePoll
+	serializedExamplePoll,
+	serializedPollTest_noVersion,
+	serializedPollTest_unknownVersion,
+	serializedPollTest_noDecisions,
+	serializedPollTest_emptyPollId
 } from "./exampleData/Poll";
 import {exampleVotes} from "./exampleData/Votes";
 
@@ -11,7 +15,7 @@ describe("Poll", () => {
 	});
 
 	it("decides correctly whether the poll is running or not", () => {
-		// examplePoll started 2017-07-12 00:00 and ended 24h later
+		// examplePoll started 2017-07-12 00:00 UTC and ended 24h later
 
 		chai.assert.isFalse(examplePoll.isRunning());
 		chai.assert.isFalse(examplePoll.isRunning(examplePoll.startDate - 1));
@@ -26,8 +30,14 @@ describe("Poll", () => {
 		chai.assert.strictEqual(examplePoll.toJson(), serializedExamplePoll);
 	});
 
-	// it("deserializes correctly", () => {
-		// dummyPoll.loadFromJson(serializedExamplePoll);
-		// chai.assert.deepEqual(examplePoll, dummyPoll);
-	// });
+	it("deserializes correctly", () => {
+		dummyPoll.loadFromJson(serializedExamplePoll);
+		chai.assert.deepEqual(examplePoll, dummyPoll);
+
+		chai.assert.throws(() => dummyPoll.loadFromJson(serializedPollTest_noVersion), Error, "No or invalid 'version' attribute found in serialized poll");
+		chai.assert.throws(() => dummyPoll.loadFromJson(serializedPollTest_unknownVersion), Error, "No or invalid 'version' attribute found in serialized poll");
+		chai.assert.throws(() => dummyPoll.loadFromJson(serializedPollTest_noDecisions), Error, "No or invalid 'decisions' attribute found in serialized poll");
+		chai.assert.throws(() => dummyPoll.loadFromJson(serializedPollTest_emptyPollId), Error, "No or invalid 'pollId' attribute found in serialized poll");
+		chai.assert.throws(() => dummyPoll.loadFromJson("this is invalid json"), Error, "No valid JSON data found");
+	});
 });

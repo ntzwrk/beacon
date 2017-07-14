@@ -4,6 +4,7 @@ import {Publishable} from './Publishable';
 import {Vote} from './Vote';
 
 // @todo
+import {exampleAttributeA, exampleAttributeB} from '../../../test/exampleData/Attributes';
 import {examplePoll} from '../../../test/exampleData/Poll';
 import {exampleVotes} from '../../../test/exampleData/Votes';
 
@@ -83,47 +84,98 @@ export class Poll extends Publishable {
 	}
 
 	public loadFromJson(jsonString: string): void {
-		// More information on the second (the reviver) parameter:
-		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse#Using_the_reviver_parameter
+		// @todo refactor
 
-		JSON.parse(jsonString, (key, value) => {
-			switch(key) {
-				case "title":
-					this.title = value;
-					break;
-				case "description":
-					this.description = value;
-					break;
-				case "imageUrl":
-					this.imageUrl = value;
-					break;
-				case "startDate":
-					this.startDate = value;
-					break;
-				case "endDate":
-					this.endDate = value;
-					break;
-				case "multipleDecisionsPossible":
-					this.multipleDecisionsPossible = value;
-					break;
-				case "decisions":
-					// @fixme decisions is [undefined, ...] at this point
-					this.decisions = value;
-					break;
-				case "requireAllAttributes":
-					this.requireAllAttributes = value;
-					break;
-				case "requiredAttributes":
-					// @fixme requiredAttributes is [{}, {}] at this point
-					this.requiredAttributes = value;
-					break;
-				case "version":
-					this.version = value;
-					break;
-			}
-		});
+		try {
+			var loadedPoll: Poll = JSON.parse(jsonString);
+		} catch(e) {
+			throw new Error("No valid JSON data found");
+		}
 
-		this.loadVotesFromAtlas();
+		switch(loadedPoll.version) {
+			case 1:
+				if(typeof loadedPoll.pollId === "string" && loadedPoll.pollId != "") {
+					this.pollId = loadedPoll.pollId;
+				} else {
+					throw new Error("No or invalid 'pollId' attribute found in serialized poll");
+				}
+
+				if(typeof loadedPoll.title === "string") {
+					this.title = loadedPoll.title;
+				} else {
+					throw new Error("No or invalid 'title' attribute found in serialized poll");
+				}
+
+				if(typeof loadedPoll.description === "string") {
+					this.description = loadedPoll.description;
+				} else {
+					throw new Error("No or invalid 'description' attribute found in serialized poll");
+				}
+
+				if(typeof loadedPoll.imageUrl === "string") {
+					this.imageUrl = loadedPoll.imageUrl;
+				} else {
+					throw new Error("No or invalid 'imageUrl' attribute found in serialized poll");
+				}
+
+				if(typeof loadedPoll.startDate === "number") {
+					this.startDate = loadedPoll.startDate;
+				} else {
+					throw new Error("No or invalid 'startDate' attribute found in serialized poll");
+				}
+
+				if(typeof loadedPoll.endDate === "number") {
+					this.endDate = loadedPoll.endDate;
+				} else {
+					throw new Error("No or invalid 'endDate' attribute found in serialized poll");
+				}
+
+				if(typeof loadedPoll.multipleDecisionsPossible === "boolean") {
+					this.multipleDecisionsPossible = loadedPoll.multipleDecisionsPossible;
+				} else {
+					throw new Error("No or invalid 'multipleDecisionsPossible' attribute found in serialized poll");
+				}
+
+				if(Array.isArray(loadedPoll.decisions)) {
+					if(loadedPoll.decisions.length > 0) {
+						this.decisions = loadedPoll.decisions;
+					} else {
+						throw new Error("Attribute 'decisions' is empty");
+					}
+				} else {
+					throw new Error("No or invalid 'decisions' attribute found in serialized poll");
+				}
+
+				if(typeof loadedPoll.requireAllAttributes === "boolean") {
+					this.requireAllAttributes = loadedPoll.requireAllAttributes;
+				} else {
+					throw new Error("No or invalid 'requireAllAttributes' attribute found in serialized poll");
+				}
+
+				if(Array.isArray(loadedPoll.requiredAttributes)) {
+					loadedPoll.requiredAttributes.forEach((attribute: any) => {
+						// @todo
+						switch(attribute) {
+							case "exampleAttributeA":
+								this.requiredAttributes.push(new exampleAttributeA());
+								break;
+							case "exampleAttributeB":
+								this.requiredAttributes.push(new exampleAttributeB());
+								break;
+						}
+					});
+				} else {
+					throw new Error("No or invalid 'requiredAttributes' attribute found in serialized poll");
+				}
+
+				this.version = loadedPoll.version;
+
+				this.loadVotesFromAtlas();
+				break;
+
+			default:
+				throw new Error("No or invalid 'version' attribute found in serialized poll");
+		}
 	}
 
 	/** Sets an array of votes */
