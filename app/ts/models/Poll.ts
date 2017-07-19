@@ -155,7 +155,7 @@ export class Poll extends Publishable {
 				if(Array.isArray(loadedPoll.requiredAttributes)) {
 					loadedPoll.requiredAttributes.forEach((attribute: any) => {
 						// @todo
-						switch(attribute) {
+						switch(attribute.identifier) {
 							case "exampleAttributeA":
 								this.requiredAttributes.push(new exampleAttributeA());
 								break;

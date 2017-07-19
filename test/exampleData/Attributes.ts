@@ -2,22 +2,26 @@ import {Attribute} from "../../app/ts/models/Attribute";
 
 
 export class exampleAttributeA implements Attribute {
+	identifier = "exampleAttributeA";
+
 	check() {
 		return true;
 	}
 
-	toJSON() {
-		return "exampleAttributeA";
+	toString() {
+		return "Attribute that is always given";
 	}
 }
 
 export class exampleAttributeB implements Attribute {
+	identifier = "exampleAttributeB";
+
 	check() {
 		return false;
 	}
 
-	toJSON() {
-		return "exampleAttributeB";
+	toString() {
+		return "Attribute that is never given";
 	}
 }
 
