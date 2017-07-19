@@ -1,5 +1,8 @@
 /** Interface representing an attribute to qualify for voting */
 export interface Attribute {
+	/** A unique identifier for this specific Attribute */
+	readonly identifier: string;
+
 	/**
 	 * This method checks whether this attribute is given or not.
 	 *
@@ -7,6 +10,6 @@ export interface Attribute {
 	 * */
 	check(): boolean;
 
-	/** Overrides the default method. Should return an unique id for identifying the attribute */
-	toJSON(): string;
+	/** Overrides the default method. Should return a precise description of the attribute */
+	toString(): string;
 }
