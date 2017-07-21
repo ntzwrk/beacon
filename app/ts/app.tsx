@@ -1,17 +1,27 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import {
+	HashRouter, Route
+} from "react-router-dom";
 
-interface HelloProps {
-	name: string;
-}
+import {Landing} from "./pages/Landing";
+import {Layout} from "./pages/Layout";
+import {SubmitPoll} from "./pages/SubmitPoll";
+import {ViewPoll} from "./pages/ViewPoll";
 
-class Hello extends React.Component<HelloProps, {}> {
-	render() {
-		return <div>Hello {this.props.name}</div>;
-	}
-}
+
+const appElement = document.getElementById("app");
+
+export const App = () => (
+    <Layout>
+		<Route path="/" exact component={Landing}></Route>
+		<Route path="/view" component={ViewPoll}></Route>
+		<Route path="/submit" component={SubmitPoll}></Route>
+	</Layout>
+);
 
 ReactDOM.render(
-	<Hello name="Blockstack" />,
-	document.getElementById("app")
-);
+	<HashRouter>
+		<App />
+	</HashRouter>,
+appElement);
